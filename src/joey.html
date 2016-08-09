@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>tribbianify</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./header-footer.css">
+    <link rel="stylesheet" href="./main.css">
+  </head>
+  <body>
+
+    <header class="col-md-12 primary-header text-center">
+      <a href="./splashpage.html" class="header-link">
+        <h1>Tribbianify!</h1>
+      </a>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 myForm text-center">
+          <form id="inputSentence">
+            <label for="sentence">
+              <h2>Enter a sentence to be Tribbianified here:</h2>
+              <textarea rows="4" cols="40" name="sentence"></textarea>
+            </label><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form><br>
+          <form id="getLastSentence">
+            <label for="goButton">
+              Click here to see your last Tribbianified sentence!
+              <button class="btn btn-info">Last Sentence!</button>
+            </label>
+          </form>
+        </div>
+
+        <div class="col-md-6 text-center video">
+          <iframe class="joeyVideo" width="400" height="300" src="https://www.youtube.com/embed/DW1lxwsK5_Q?autoplay=1" frameborder="0" allowfullscreen autoplay='true'></iframe>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center answer col-md-10 col-md-offset-1">
+          <h2></h2>
+          <h2 id="lastSentence"></h2>
+          <h4>Want your sentence texted to you? Enter your info here!</h4>
+          <form id="texter">
+            <label for="number">
+              Phone Number:
+              <input type="tel" name="number">
+            </label>
+            <button class="btn btn-primary">Text me!</button>
+            <h4 id="successOrFail"></h4>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="col-md-12 primary-footer text-center">
+      <h6>&copy; Heathcliff productions. Except the pictures/video. Those are definitely not mine.</h6>
+    </footer>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./main.js"></script>
+  </body>
+</html>

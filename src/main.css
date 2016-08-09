@@ -1,0 +1,64 @@
+body {
+  background-color: #e3e0cf;
+}
+h1, h2 {
+  color: #2d2d2d;
+  font-family: 'open sans condensed';
+}
+.synonym {
+  height: 88vh;
+  background-color: #e3e0cf;
+  border-right: 1px solid lightgrey;
+  border-top: 2px solid lightgrey;
+  border-bottom: 2px solid lightgrey;
+  border-left: 2px solid lightgrey;
+  background-image: url('http://www.ew.com/sites/default/files/i/2012/09/19/DEAD-POETS-SOCIETY.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70% 70%;
+}
+.tribbianify {
+  height: 88vh;
+  background-color: #e3e0cf;
+  border-right: 2px solid lightgrey;
+  border-top: 2px solid lightgrey;
+  border-bottom: 2px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  background-image: url('https://userscontent2.emaze.com/images/99ab7227-3089-493c-aa50-f9ea8ad3b664/501f4f3d-8dac-4315-a8b5-76cfd109a741image21.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70% 70%;
+}
+.video {
+  height: 44vh;
+}
+.joeyVideo, .myForm, .deadPoetsVideo {
+  padding-top: 50px;
+}
+.answer, .betterWords {
+  min-height: 44vh;
+  visibility: hidden;
+}
+.pic:hover {
+  background-color: #fff;
+}
+.pic h2 {
+  visibility: hidden;
+}
+.pic:hover h2 {
+  visibility: visible;
+}
+div img {
+  height: 70vh;
+  width: 70vw;
+}
+.header-link:hover {
+  text-decoration: none;
+}
+#lastSentence {
+  visibility: hidden;
+}
+li {
+  display: inline-block;
+  margin: 5px;
+}

@@ -1,0 +1,15 @@
+header {
+  background-color: #9fa8a3;
+}
+header h1 {
+  color: #c5d5cb;
+  font-family: 'arial';
+  visibility: visible;
+}
+footer h6 {
+  float: left;
+  color: #3b3a36;
+}
+footer {
+  background-color: #9fa8a3;
+}

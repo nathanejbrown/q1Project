@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Smarterer Words Finder</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./header-footer.css">
+    <link rel="stylesheet" href="./main.css">
+  </head>
+  <body>
+    <header class="col-md-12 primary-header text-center">
+      <a href="./splashPage.html" class="header-link">
+        <h1>What will your verse be?</h1>
+      </a>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 myForm text-center">
+          <form id="inputWord">
+            <label for="word">
+              <h2>Enter a word to make more smarter here:</h2>
+              <input type="text" name="word">
+            </label><br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+        <div class="col-md-6 text-center video">
+          <iframe class="deadPoetsVideo" width="400" height="300" src="https://www.youtube.com/embed/R_zsMwCOoEs?autoplay=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="text-center betterWords col-md-10 col-md-offset-1">
+          <h3>Synonyms</h3>
+          <ul id="synonyms"></ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class="col-md-12 primary-footer text-center">
+      <h6>&copy; Heathcliff productions. Except the pictures/video. Those are definitely not mine.</h6>
+    </footer>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./dead-poets.js"></script>
+  </body>
+</html>
