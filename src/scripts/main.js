@@ -5,7 +5,7 @@ var partsOfSpeech = [];
 
 $('#inputSentence').on('submit', function(event) {
     event.preventDefault();
-    var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(' ');
+    var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!$%\^&\*;:{}=\-_\'`~()]/g,"").split(' ');
     var newSentence = [];
     sentence.forEach(function(word) {
         if (WORDSTOIGNORE.indexOf(word.toLowerCase()) > -1) {
@@ -17,7 +17,7 @@ $('#inputSentence').on('submit', function(event) {
     Promise.all(newSentence).then(function(combinationOfWords) {
       combinationOfWords = combinationOfWords.join(' ') + '.';
       combinationOfWords = combinationOfWords.charAt(0).toUpperCase() + combinationOfWords.slice(1);
-      $('.answer h2').text('Your Tribbianified sentence is: ' + combinationOfWords);
+      $('.answer h2').text('Your Tribbianified sentence is: "' + combinationOfWords + '"');
       $('.answer').css('visibility', 'visible');
       $('#lastSentence').css('visibility', 'hidden');
       localStorage.setItem('lastSentence', combinationOfWords);
@@ -93,13 +93,17 @@ function sendTextMessage(object) {
       method: 'POST',
       data: object
     }).done(function(info) {
-      if (info.success === true) {
-        $('#successOrFail').text('Sent!');
-      } else {
-        $('#successOrFail').text('Something went wrong, please try again');
-      }
+      checkForSuccess(info);
     }).fail(function(error) {
       console.log(error);
     });
   });
+}
+
+function checkForSuccess(input) {
+  if (info.success === true) {
+    $('#successOrFail').text('Sent!');
+  } else {
+    $('#successOrFail').text('Something went wrong, please try again');
+  }
 }
