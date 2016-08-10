@@ -6,6 +6,10 @@ var partsOfSpeech = [];
 $('#inputSentence').on('submit', function(event) {
     event.preventDefault();
     var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!$%\^&\*;:{}=\-_\'`~()]/g,"").split(' ');
+    //Easter egg
+    if (sentence[0] === 'Kanye' && sentence[1] === 'West') {
+      window.location.href='https://nathanejbrown.github.io/Kanye/';
+    }
     var newSentence = [];
     sentence.forEach(function(word) {
         if (WORDSTOIGNORE.indexOf(word.toLowerCase()) > -1) {
