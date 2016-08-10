@@ -62,3 +62,7 @@ li {
   display: inline-block;
   margin: 5px;
 }
+.easterEgg {
+  font-size: 1rem;
+  float: right;
+}
