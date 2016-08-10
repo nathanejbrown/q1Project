@@ -1,11 +1,11 @@
 /*jshint esversion: 6 */
-const WORDSTOIGNORE = ['it', 'if', 'then', 'the', 'and', 'but', 'or', 'so', 'is', 'my', 'this', 'here', 'a', 'by', 'any', 'would', 'with', 'how', 'as', 'to', 'of', 'got', 'i', 'there', 'on', 'your', 'for', 'they','are','all'];
+const WORDSTOIGNORE = ['it', 'if', 'then', 'the', 'and', 'but', 'or', 'so', 'is', 'my', 'this', 'here', 'a', 'by', 'any', 'would', 'with', 'how', 'as', 'to', 'of', 'got', 'i', 'there', 'on', 'your', 'for', 'they','are','all', 'The'];
 
 var partsOfSpeech = [];
 
 $('#inputSentence').on('submit', function(event) {
     event.preventDefault();
-    var sentence = $('textarea[name=sentence]').val().replace(/\./g, '').split(' ');
+    var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(' ');
     var newSentence = [];
     sentence.forEach(function(word) {
         if (WORDSTOIGNORE.indexOf(word.toLowerCase()) > -1) {
@@ -27,7 +27,7 @@ $('#inputSentence').on('submit', function(event) {
 $('#getLastSentence').on('submit', function(event) {
   event.preventDefault();
   var last = localStorage.getItem('lastSentence');
-  $('#lastSentence').text('Your last Tribbianified sentence was: ' + last);
+  $('#lastSentence').text('Your last Tribbianified sentence was: "' + last + '"');
   $('#lastSentence').css('visibility', 'visible');
   $('.answer').css('visibility', 'hidden');
 });
@@ -52,15 +52,24 @@ function processData(data) {
     partsOfSpeech.push(pos);
   }
   var randomPos = partsOfSpeech[randomIndex(partsOfSpeech)];
-  var randomWord = randomIndex(data[randomPos].syn);
-  var newWord = data[randomPos].syn[randomWord];
+  if (data[randomPos].hasOwnProperty('syn')) {
+    var filler = 'syn';
+    var randomWord = randomIndex(data[randomPos].syn);
+  } else {
+    var filler = 'sim';
+    var randomWord = randomIndex(data[randomPos].sim);
+  }
+  var newWord = data[randomPos][filler][randomWord];
   partsOfSpeech = [];
   return newWord;
 }
 
 function randomIndex (array) {
-  console.log(array);
-  return Math.floor(Math.random() * (array.length));
+  if (array.length === undefined) {
+    console.log(array);
+  } else {
+      return Math.floor(Math.random() * (array.length));
+    }
 }
 
 $('#texter').on('submit', function(event) {
