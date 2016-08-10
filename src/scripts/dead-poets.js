@@ -20,7 +20,7 @@ $('#inputWord').on('submit', function(event) {
 function getAjaxData (word) {
   return new Promise(function(resolve, reject) {
     $.ajax ({
-      url: 'http://words.bighugelabs.com/api/2/ba781178cf379a7f5ea7f60910ce5521/' + word + '/json',
+      url: 'https://words.bighugelabs.com/api/2/ba781178cf379a7f5ea7f60910ce5521/' + word + '/json',
       method: 'GET',
       dataType: 'json'
     }).done(function(data) {
