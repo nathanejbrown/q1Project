@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-const WORDSTOIGNORE = ['it', 'if', 'then', 'the', 'and', 'but', 'or', 'so', 'is', 'my', 'this', 'here', 'a', 'by', 'any', 'would', 'with', 'how', 'as', 'to', 'of', 'got', 'i', 'there', 'on', 'your', 'for', 'they','are','all', 'The', 'you', 'what'];
+const WORDSTOIGNORE = ['it', 'if', 'then', 'the', 'and', 'but', 'or', 'so', 'is', 'my', 'this', 'here', 'a', 'by', 'any', 'would', 'with', 'how', 'as', 'to', 'of', 'got', 'i', 'there', 'on', 'your', 'for', 'they','are','all', 'you'];
 
 var partsOfSpeech = [];
 
@@ -49,9 +49,11 @@ function getAjaxData (word) {
     }).done(function(data) {
       resolve(processData(data));
     }).fail(function(error) {
-      var badWords = localStorage.getItem('wordArray');
-      badWords = badWords.split(' ');
-      badWords.push(word);
+      var badWords = localStorage.getItem('wordArray').split(',');
+      //console.log(Array.isArray(badWords), badWords);
+      if (badWords.indexOf(word) === -1) {
+        badWords.push(word);
+      }
       localStorage.setItem('wordArray', badWords);
       resolve(word);
       console.log(error);
