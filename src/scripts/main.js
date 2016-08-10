@@ -76,10 +76,14 @@ $('#texter').on('submit', function(event) {
   event.preventDefault();
   var phone = $('input[name=number]').val();
   var text = 'Here is your Tribbianified sentence! ' + $('.answer h2').text();
-  console.log('text', text);
-  var message = new TextMessage(phone, text);
-  console.log('message', message);
-  sendTextMessage(message);
+  if (isPhoneNumber(phone)) {
+    var message = new TextMessage(phone, text);
+    sendTextMessage(message);
+  } else {
+    $('#successOrFail').text('Your phone number must be ten digits long and include only numbers.');
+    $('#successOrFail').css('visiblility', 'visible');
+  }
+
 });
 
 function TextMessage (number, message) {
@@ -101,9 +105,23 @@ function sendTextMessage(object) {
 }
 
 function checkForSuccess(input) {
-  if (info.success === true) {
+  $('#successOrFail').empty();
+  if (input.success === true) {
     $('#successOrFail').text('Sent!');
   } else {
     $('#successOrFail').text('Something went wrong, please try again');
   }
+  $('#successOrFail').css('visibility', 'visible');
+}
+
+function isPhoneNumber(number) {
+  var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  if (number.length !== 10) {
+    return false;
+  }
+  for (x = 0; x < 10; x++) {
+    if (numbers.indexOf(number[x]) === -1)
+    return false;
+  }
+  return true;
 }
