@@ -1,10 +1,14 @@
 /*jshint esversion: 6 */
-const WORDSTOIGNORE = ['it', 'if', 'then', 'the', 'and', 'but', 'or', 'so', 'is', 'my', 'this', 'here', 'a', 'by', 'any', 'would', 'with', 'how', 'as', 'to', 'of', 'got', 'i', 'there', 'on', 'your', 'for', 'they','are','all', 'The'];
+const WORDSTOIGNORE = ['it', 'if', 'then', 'the', 'and', 'but', 'or', 'so', 'is', 'my', 'this', 'here', 'a', 'by', 'any', 'would', 'with', 'how', 'as', 'to', 'of', 'got', 'i', 'there', 'on', 'your', 'for', 'they','are','all', 'The', 'you', 'what'];
 
 var partsOfSpeech = [];
 
 $('#inputSentence').on('submit', function(event) {
     event.preventDefault();
+    if (localStorage.getItem('wordArray') === null) {
+      localStorage.setItem('wordArray', WORDSTOIGNORE);
+    }
+    var dontUseThese = localStorage.getItem('wordArray').split(' ');
     var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!$%\^&\*;:{}=\-_\'`~()]/g,"").split(' ');
     //Easter egg
     if (sentence[0] === 'Kanye' && sentence[1] === 'West') {
@@ -12,7 +16,7 @@ $('#inputSentence').on('submit', function(event) {
     }
     var newSentence = [];
     sentence.forEach(function(word) {
-        if (WORDSTOIGNORE.indexOf(word.toLowerCase()) > -1) {
+        if (dontUseThese.indexOf(word.toLowerCase()) > -1) {
           newSentence.push(Promise.resolve(word));
         } else {
           newSentence.push(getAjaxData(word.toLowerCase()));
@@ -43,9 +47,13 @@ function getAjaxData (word) {
       method: 'GET',
       dataType: 'json'
     }).done(function(data) {
-      console.log(data);
       resolve(processData(data));
     }).fail(function(error) {
+      var badWords = localStorage.getItem('wordArray');
+      badWords = badWords.split(' ');
+      badWords.push(word);
+      localStorage.setItem('wordArray', badWords);
+      resolve(word);
       console.log(error);
     });
   });
