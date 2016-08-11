@@ -62,3 +62,6 @@ li {
   display: inline-block;
   margin: 5px;
 }
+#error-message {
+  visibility: hidden;
+}

@@ -9,11 +9,11 @@ $('#inputSentence').on('submit', function(event) {
       localStorage.setItem('wordArray', WORDSTOIGNORE);
     }
     var dontUseThese = localStorage.getItem('wordArray').split(',');
-    var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!$%\^&\*;:{}=\-_\'`~()]/g,"").split(' ');
+    var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!?$%\^&\*;:{}=\-_\'`~()]/g,'').split(' ');
     localStorage.setItem('original', $('textarea[name=sentence]').val());
     //Easter egg////////////
     if (sentence[0] === 'Kanye' && sentence[1] === 'West') {
-      window.location.href='https://nathanejbrown.github.io/Kanye/';
+      window.location.href = 'https://nathanejbrown.github.io/Kanye/';
     }
     if (sentence[0] === 'Tom' && sentence[1] === 'Brady') {
       $('.answer h2').text('The greatest goddamn quarterback of all time!');
@@ -89,8 +89,8 @@ function randomIndex (array) {
   if (array.length === undefined) {
     console.log(array);
   } else {
-      return Math.floor(Math.random() * (array.length));
-    }
+    return Math.floor(Math.random() * (array.length));
+  }
 }
 
 $('#texter').on('submit', function(event) {
