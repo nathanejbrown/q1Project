@@ -15,23 +15,27 @@ $('#inputSentence').on('submit', function(event) {
     if (sentence[0] === 'Kanye' && sentence[1] === 'West') {
       window.location.href='https://nathanejbrown.github.io/Kanye/';
     }
-    //Easter egg////////////
-    var newSentence = [];
-    sentence.forEach(function(word) {
-        if (dontUseThese.indexOf(word.toLowerCase()) > -1) {
-          newSentence.push(Promise.resolve(word));
-        } else {
-          newSentence.push(getAjaxData(word.toLowerCase()));
-        }
-      });
-    Promise.all(newSentence).then(function(combinationOfWords) {
-      combinationOfWords = combinationOfWords.join(' ') + '.';
-      combinationOfWords = combinationOfWords.charAt(0).toUpperCase() + combinationOfWords.slice(1);
-      $('.answer h2').text('Your Tribbianified sentence is: "' + combinationOfWords + '"');
+    if (sentence[0] === 'Tom' && sentence[1] === 'Brady') {
+      $('.answer h2').text('The greatest goddamn quarterback of all time!');
       $('.answer').css('visibility', 'visible');
-      $('#lastSentence').css('visibility', 'hidden');
-      localStorage.setItem('lastSentence', combinationOfWords);
-    });
+    } else {
+      var newSentence = [];
+      sentence.forEach(function(word) {
+          if (dontUseThese.indexOf(word.toLowerCase()) > -1) {
+            newSentence.push(Promise.resolve(word));
+          } else {
+            newSentence.push(getAjaxData(word.toLowerCase()));
+          }
+        });
+      Promise.all(newSentence).then(function(combinationOfWords) {
+        combinationOfWords = combinationOfWords.join(' ') + '.';
+        combinationOfWords = combinationOfWords.charAt(0).toUpperCase() + combinationOfWords.slice(1);
+        $('.answer h2').text('Your Tribbianified sentence is: "' + combinationOfWords + '"');
+        $('.answer').css('visibility', 'visible');
+        $('#lastSentence').css('visibility', 'hidden');
+        localStorage.setItem('lastSentence', combinationOfWords);
+      });
+    }
   });
 
 $('#getLastSentence').on('submit', function(event) {

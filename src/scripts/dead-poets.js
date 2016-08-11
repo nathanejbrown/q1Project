@@ -38,8 +38,10 @@ function getAjaxData (word) {
       method: 'GET',
       dataType: 'json'
     }).done(function(data) {
+      console.log(data);
       resolve(processData(data));
     }).fail(function(error) {
+      $('.betterWords').css('visibility', 'hidden');
       $('.betterWords h2').text('The word you submitted did not return any results.');
       $('.betterWords h2').css('visibility', 'visible');
       var wordsToAvoid = localStorage.getItem('wordArray').split(',');
@@ -58,7 +60,11 @@ function processData(data) {
     partsOfSpeech.push(pos);
   }
   var randomPos = partsOfSpeech[randomIndex(partsOfSpeech)];
-  var synonyms = data[randomPos].syn;
+  if (data[randomPos].hasOwnProperty('syn')) {
+    var synonyms = data[randomPos].syn;
+  } else {
+    var synonyms = data[randomPos].sim;
+  }
   partsOfSpeech = [];
   return synonyms;
 }
