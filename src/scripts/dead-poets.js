@@ -18,6 +18,7 @@ $('#inputWord').on('submit', function(event) {
   }
   else if (onlyAllowOneWord(word)) {
     getAjaxData(word).then(function(synonyms) {
+      $('.betterWords h2').text('');
       $('.betterWords').css('visibility', 'visible');
       $('#synonyms').text('');
       synonyms.forEach(function(word) {
@@ -44,7 +45,7 @@ function getAjaxData (word) {
       var wordsToAvoid = localStorage.getItem('wordArray').split(',');
       if (wordsToAvoid.indexOf(word) === -1) {
         wordsToAvoid.push(word);
-        localStorage.setItem('wordArray', wordsToAvoid);        
+        localStorage.setItem('wordArray', wordsToAvoid);
       }
 
       console.log(error);
