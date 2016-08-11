@@ -8,12 +8,14 @@ $('#inputSentence').on('submit', function(event) {
     if (localStorage.getItem('wordArray') === null) {
       localStorage.setItem('wordArray', WORDSTOIGNORE);
     }
-    var dontUseThese = localStorage.getItem('wordArray').split(' ');
+    var dontUseThese = localStorage.getItem('wordArray').split(',');
     var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!$%\^&\*;:{}=\-_\'`~()]/g,"").split(' ');
-    //Easter egg
+    localStorage.setItem('original', $('textarea[name=sentence]').val());
+    //Easter egg////////////
     if (sentence[0] === 'Kanye' && sentence[1] === 'West') {
       window.location.href='https://nathanejbrown.github.io/Kanye/';
     }
+    //Easter egg////////////
     var newSentence = [];
     sentence.forEach(function(word) {
         if (dontUseThese.indexOf(word.toLowerCase()) > -1) {
@@ -35,7 +37,8 @@ $('#inputSentence').on('submit', function(event) {
 $('#getLastSentence').on('submit', function(event) {
   event.preventDefault();
   var last = localStorage.getItem('lastSentence');
-  $('#lastSentence').text('Your last Tribbianified sentence was: "' + last + '"');
+  var original = localStorage.getItem('original');
+  $('#lastSentence').text('Your last Tribbianified sentence was: "' + last + '" The sentence you originally entered was "' + original + '"');
   $('#lastSentence').css('visibility', 'visible');
   $('.answer').css('visibility', 'hidden');
 });

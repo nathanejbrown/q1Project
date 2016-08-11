@@ -1,9 +1,22 @@
 var partsOfSpeech = [];
+const WORDSTOIGNORE = [];
+var wordsToAvoid = [];
+
+$(document).ready(function() {
+  if (localStorage.getItem('wordArray') === null) {
+    localStorage.setItem('wordArray', WORDSTOIGNORE);
+  }
+  wordsToAvoid = localStorage.getItem('wordArray').split(',');
+})
 
 $('#inputWord').on('submit', function(event) {
   event.preventDefault();
   var word = $('input[name=word]').val();
-  if (onlyAllowOneWord(word)) {
+  if (wordsToAvoid.indexOf(word) > -1) {
+    $('.betterWords h2').text('The word you submitted did not return any results.');
+    $('.betterWords h2').css('visibility', 'visible');
+  }
+  else if (onlyAllowOneWord(word)) {
     getAjaxData(word).then(function(synonyms) {
       $('.betterWords').css('visibility', 'visible');
       $('#synonyms').text('');
@@ -26,6 +39,14 @@ function getAjaxData (word) {
     }).done(function(data) {
       resolve(processData(data));
     }).fail(function(error) {
+      $('.betterWords h2').text('The word you submitted did not return any results.');
+      $('.betterWords h2').css('visibility', 'visible');
+      var wordsToAvoid = localStorage.getItem('wordArray').split(',');
+      if (wordsToAvoid.indexOf(word) === -1) {
+        wordsToAvoid.push(word);
+        localStorage.setItem('wordArray', wordsToAvoid);        
+      }
+
       console.log(error);
     });
   });
