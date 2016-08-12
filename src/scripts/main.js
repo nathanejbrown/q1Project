@@ -2,11 +2,15 @@
 const WORDSTOIGNORE = ['it', 'if', 'then', 'the', 'and', 'but', 'or', 'so', 'is', 'my', 'this', 'here', 'a', 'by', 'any', 'would', 'with', 'how', 'as', 'to', 'of', 'got', 'i', 'there', 'on', 'your', 'for', 'they','are','all', 'you'];
 
 var partsOfSpeech = [];
+var favorites = [];
 
 $('#inputSentence').on('submit', function(event) {
     event.preventDefault();
     if (localStorage.getItem('wordArray') === null) {
       localStorage.setItem('wordArray', WORDSTOIGNORE);
+    }
+    if (localStorage.getItem('faves') === null) {
+      localStorage.setItem('faves', favorites);
     }
     var dontUseThese = localStorage.getItem('wordArray').split(',');
     var sentence = $('textarea[name=sentence]').val().replace(/[.,\/#!?$%\^&\*;:{}=\-_\'`~()]/g,'').split(' ');
@@ -32,7 +36,9 @@ $('#inputSentence').on('submit', function(event) {
         combinationOfWords = combinationOfWords.charAt(0).toUpperCase() + combinationOfWords.slice(1);
         $('#returnSentence').text('Your Tribbianified sentence is: "' + combinationOfWords + '"');
         $('.answer').css('visibility', 'visible');
+        $('.answer').css('display', 'block');
         $('#lastSentence').css('display', 'none');
+        $('#faves').css('display', 'none');
         localStorage.setItem('lastSentence', combinationOfWords);
       });
     }
@@ -59,7 +65,6 @@ function getAjaxData (word) {
       resolve(processData(data));
     }).fail(function(error) {
       var badWords = localStorage.getItem('wordArray').split(',');
-      //console.log(Array.isArray(badWords), badWords);
       if (badWords.indexOf(word) === -1) {
         badWords.push(word);
       }
@@ -108,6 +113,24 @@ $('#texter').on('submit', function(event) {
   }
 
 });
+$('#addToFavorites').on('click', function(event) {
+  event.preventDefault();
+  var myFaves = localStorage.getItem('faves').split(',');
+  var inputSentence = localStorage.getItem('lastSentence');
+  myFaves.push(inputSentence);
+  localStorage.setItem('faves', myFaves);
+});
+
+$('#viewFavorites').on('click', function(event) {
+  event.preventDefault();
+  var suchFaves = localStorage.getItem('faves').split(',');
+  suchFaves.forEach(function(favorite) {
+    $('#faves ul').append('<li>' + favorite + '</li>');
+  })
+  $('.answer').css('display', 'none');
+  $('#faves').css('display', 'block');
+});
+
 
 function TextMessage (number, message) {
   this.number = number;
