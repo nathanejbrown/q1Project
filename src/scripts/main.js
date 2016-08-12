@@ -44,6 +44,7 @@ $('#getLastSentence').on('submit', function(event) {
   var original = localStorage.getItem('original');
   $('#lastSentence').text('Your last Tribbianified sentence was: "' + last + '" The sentence you originally entered was "' + original + '"');
   $('#lastSentence').css('display', 'block');
+  $('.answer #lastSentence').css('visibility', 'visible');
   $('#returnSentence').text('');
   // $('.answer').css('visibility', 'hidden');
 });
