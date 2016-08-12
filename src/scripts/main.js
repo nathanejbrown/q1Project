@@ -16,7 +16,7 @@ $('#inputSentence').on('submit', function(event) {
       window.location.href = 'https://nathanejbrown.github.io/Kanye/';
     }
     if (sentence[0] === 'Tom' && sentence[1] === 'Brady') {
-      $('.answer h2').text('The greatest goddamn quarterback of all time!');
+      $('#returnSentence').text('The greatest goddamn quarterback of all time!');
       $('.answer').css('visibility', 'visible');
     } else {
       var newSentence = [];
@@ -30,9 +30,9 @@ $('#inputSentence').on('submit', function(event) {
       Promise.all(newSentence).then(function(combinationOfWords) {
         combinationOfWords = combinationOfWords.join(' ') + '.';
         combinationOfWords = combinationOfWords.charAt(0).toUpperCase() + combinationOfWords.slice(1);
-        $('.answer h2').text('Your Tribbianified sentence is: "' + combinationOfWords + '"');
+        $('#returnSentence').text('Your Tribbianified sentence is: "' + combinationOfWords + '"');
         $('.answer').css('visibility', 'visible');
-        $('#lastSentence').css('visibility', 'hidden');
+        $('#lastSentence').css('display', 'none');
         localStorage.setItem('lastSentence', combinationOfWords);
       });
     }
@@ -43,7 +43,7 @@ $('#getLastSentence').on('submit', function(event) {
   var last = localStorage.getItem('lastSentence');
   var original = localStorage.getItem('original');
   $('#lastSentence').text('Your last Tribbianified sentence was: "' + last + '" The sentence you originally entered was "' + original + '"');
-  $('#lastSentence').css('visibility', 'visible');
+  $('#lastSentence').css('display', 'block');
   $('#returnSentence').text('');
   // $('.answer').css('visibility', 'hidden');
 });
@@ -97,7 +97,7 @@ function randomIndex (array) {
 $('#texter').on('submit', function(event) {
   event.preventDefault();
   var phone = $('input[name=number]').val();
-  var text = 'Here is your Tribbianified sentence! ' + $('.answer h2').text();
+  var text = 'Here is your Tribbianified sentence! ' + $('#returnSentence').text();
   if (isPhoneNumber(phone)) {
     var message = new TextMessage(phone, text);
     sendTextMessage(message);

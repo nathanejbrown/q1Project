@@ -56,7 +56,7 @@ div img {
   text-decoration: none;
 }
 #lastSentence {
-  visibility: hidden;
+  display: none;
 }
 li {
   display: inline-block;
