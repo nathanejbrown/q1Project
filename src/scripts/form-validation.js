@@ -19,3 +19,10 @@ function isPhoneNumber(number) {
   }
   return true;
 }
+
+function onlyAllowOneWord (input) {
+  input = input.split(' ');
+  if (input.length !== 1) {
+    return false;
+  } else return true;
+}

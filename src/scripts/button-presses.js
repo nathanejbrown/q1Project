@@ -53,7 +53,8 @@ $('#getLastSentence').on('submit', function(event) {
 $('#texter').on('submit', function(event) {
   event.preventDefault();
   var phone = $('input[name=number]').val();
-  var text = 'Here is your Tribbianified sentence! ' + $('#returnSentence').text();
+  var last = localStorage.getItem('lastSentence');
+  var text = 'Here is your Tribbianified sentence! "' + last + '"';
   if (isPhoneNumber(phone)) {
     var message = new TextMessage(phone, text);
     sendTextMessage(message);
@@ -74,6 +75,7 @@ $('#addToFavorites').on('click', function(event) {
 $('#viewFavorites').on('click', function(event) {
   event.preventDefault();
   var suchFaves = localStorage.getItem('faves').split(',');
+  $('#faves ol').empty();
   suchFaves.forEach(function(favorite) {
     $('#faves ol').append('<li>' + favorite + '</li>');
   })

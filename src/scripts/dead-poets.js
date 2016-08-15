@@ -39,7 +39,6 @@ function getAjaxData (word) {
       method: 'GET',
       dataType: 'json'
     }).done(function(data) {
-      console.log(data);
       resolve(processData(data));
     }).fail(function(error) {
       $('.betterWords').css('visibility', 'hidden');
@@ -71,13 +70,4 @@ function processData(data) {
 
 function randomIndex (array) {
   return Math.floor(Math.random() * (array.length));
-}
-
-//Form validation
-
-function onlyAllowOneWord (input) {
-  input = input.split(' ');
-  if (input.length !== 1) {
-    return false;
-  } else return true;
 }
