@@ -56,9 +56,15 @@ div img {
   text-decoration: none;
 }
 #lastSentence {
-  visibility: hidden;
+  display: none;
 }
 li {
   display: inline-block;
   margin: 5px;
+}
+#error-message {
+  visibility: hidden;
+}
+#faves {
+  display: none;
 }
