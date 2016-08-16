@@ -80,5 +80,5 @@ $('#viewFavorites').on('click', function(event) {
     $('#faves ol').append('<li>' + favorite + '</li>');
   })
   $('.answer').css('display', 'none');
-  $('#faves').css('display', 'block');
+  $('#faves').css('display', 'inline');
 });

@@ -7,9 +7,10 @@ header h1 {
   visibility: visible;
 }
 footer h6 {
-  float: left;
+  text-align: left;
   color: #3b3a36;
 }
 footer {
   background-color: #9fa8a3;
+  padding: 5px;
 }
